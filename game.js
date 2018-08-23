@@ -1,3 +1,4 @@
+//prueba
 var kirby=[];
 var columna=[];
 var x=100,y=366,contSprite=0;
