@@ -88,6 +88,20 @@ function load_bitmap(filename){
  return bmp;
 }
 
+function create_bitmap(width,height){
+ var cv=document.createElement('canvas');
+ cv.width=width;
+ cv.height=height;
+ var ctx=cv.getContext("2d");
+ return{w:width,h:height,canvas:cv,context:ctx,ready:true,type:"bmp"};
+}
+
+function putpixel(bitmap,x,y,colour){
+ _fillstyle(bitmap,colour);
+ bitmap.context.fillRect(x,y,1,1);
+}
+
+
 
 
 

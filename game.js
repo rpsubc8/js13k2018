@@ -9,13 +9,13 @@ var scalc=0;
 var ccalc=0;
 
 function LoadSprites(){
- kirby[0]=load_bitmap("datos/kirbi00.gif");
- kirby[1]=load_bitmap("datos/kirbi01.gif");
- kirby[2]=load_bitmap("datos/kirbi02.gif");
- suelo=load_bitmap("datos/suelo.gif");
- columna[0]=load_bitmap("datos/columna00.gif");
- columna[1]=load_bitmap("datos/columna01.gif");
- carne=load_bitmap("datos/carne.gif");
+ kirby[0]=load_bitmap("data:image/gif;base64,R0lGODlhFgATALMAAAAAADlC1mMIIbUAKdYAUt5Kc/dzpff39/8A//8YhP+l3v///////////////////yH5BAEAAAgALAAAAAAWABMAAAR/EMmJhL00Z6u6t9rmjV8oAWSqCCFgqB7KaiisGIc7Ty4s3ABZpudTFISU3iv1MwRWQ4O0sOwYBIlEZ3eSTqnS3/Ya5IG9lxGZQAAgAAPA2UufAhLsYN5Vpx/ZewRZCXJzBkcAgHEnWQqEQZBBA5OQPIOELWU0WW0mnm+anxQRAAA7");
+ kirby[1]=load_bitmap("data:image/gif;base64,R0lGODlhEgASALMAAAAAADlC1mMIIXOUvbUAKdYAUt5Kc/dzpff39/8A//8YhP+l3v///////////////yH5BAEAAAkALAAAAAASABIAAARqMMkpqp2YisV7zdLWjZyQAWS6mBJwqAtglBMKIzZiunBsA7sXzGAzBHuHAOdwTCkUpGZH6FkwE7zRLEpsUQ2HsDgMqAErrnG4W3s+02sAgFBuFZ6Lgnxf6NNrdwplcwR9fnUtcmZ7cgMRAAA7");
+ kirby[2]=load_bitmap("data:image/gif;base64,R0lGODlhEwARALMAAAAAADlC1mMIIbUAKdYAUt5Kc/dzpff39/8A//8YhP+l3v///////////////////yH5BAEAAAgALAAAAAATABEAAARqEMmJhL2Waqu674ImAV8JaoBhAkXHhhNpHjINI6mpADJvwDJTQTZUhIImQ6CjNOZMiQRUgGSWBIrWr2poXRVdAM6z5aUMaLR4xBMQotEzeoh6S6OE1HBNAdgJA4FmfCiDPASAhCI4hoQRAAA7");
+ suelo=load_bitmap("data:image/gif;base64,R0lGODlhBAAFALMAAACtAFreUv///////////////////////////////////////////////////////ywAAAAABAAFAAAECBBIEKqtEs8IADs=");
+ columna[0]=load_bitmap("data:image/gif;base64,R0lGODlhEAACALMAAIwQAP+lQv/nrf///////////////////////////////////////////////////ywAAAAAEAACAAAECxCEIIW9QlJdseURADs=");
+ columna[1]=load_bitmap("data:image/gif;base64,R0lGODlhEAAHALMAAIwQAP8A//+lQv/nrf///////////////////////////////////////////////yH5BAEAAAEALAAAAAAQAAcAAAQhMEgJqp04VMF7zUAnelPoWSJAcZswDK1qCuFrz7Fr32wEADs=");
+ carne=load_bitmap("data:image/gif;base64,R0lGODlhFgALALMAAAAAAKWlpd4YEOfn5/daIfelIffnIf8A/////////////////////////////////yH5BAEAAAcALAAAAAAWAAsAAARX8MhDSi22Ek3E/FZhhNkmnB+CSOTldpKKAOoAVCOGdQQwqADaYBC4cV4C4W+GCNg0IY2gR5w5A6yNlsfzHJzfgcRkmp46XuLncG67vevJac6ew+P4/CQCADs=");
 }
 
 function DibujaSuelo(){
@@ -81,5 +81,6 @@ function main(){
   },BPS_TO_TIMER(60));
  });
  return 0;
+ remove_keyboard();
 }
 END_OF_MAIN();
