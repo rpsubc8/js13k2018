@@ -170,7 +170,6 @@ function _keydown(e){
  if (_enabled_keys.indexOf(e.keyCode)==-1) e.preventDefault();
 }
 
-/// key up event handler
 function _keyup(e){
  key[e.keyCode]=false;
  released[e.keyCode]=true;

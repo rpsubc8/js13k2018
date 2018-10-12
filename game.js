@@ -1,12 +1,9 @@
-//prueba
 var kirby=[];
 var columna=[];
 var x=100,y=366,contSprite=0;
-var suelo;
-var carne;
+var suelo,carne;
 var contEspera=3;
-var scalc=0;
-var ccalc=0;
+var scalc=0,ccalc=0;
 
 function LoadSprites(){
  kirby[0]=load_bitmap("data:image/gif;base64,R0lGODlhFgATALMAAAAAADlC1mMIIbUAKdYAUt5Kc/dzpff39/8A//8YhP+l3v///////////////////yH5BAEAAAgALAAAAAAWABMAAAR/EMmJhL00Z6u6t9rmjV8oAWSqCCFgqB7KaiisGIc7Ty4s3ABZpudTFISU3iv1MwRWQ4O0sOwYBIlEZ3eSTqnS3/Ya5IG9lxGZQAAgAAPA2UufAhLsYN5Vpx/ZewRZCXJzBkcAgHEnWQqEQZBBA5OQPIOELWU0WW0mnm+anxQRAAA7");
@@ -18,43 +15,43 @@ function LoadSprites(){
  carne=load_bitmap("data:image/gif;base64,R0lGODlhFgALALMAAAAAAKWlpd4YEOfn5/daIfelIffnIf8A/////////////////////////////////yH5BAEAAAcALAAAAAAWAAsAAARX8MhDSi22Ek3E/FZhhNkmnB+CSOTldpKKAOoAVCOGdQQwqADaYBC4cV4C4W+GCNg0IY2gR5w5A6yNlsfzHJzfgcRkmp46XuLncG67vevJac6ew+P4/CQCADs=");
 }
 
-function DibujaSuelo(){
+function DibujaSuelo(bitmap){
  for(i=0;i<40;i++){
-  stretch_blit(suelo,canvas,0,0,suelo.w,suelo.h,i*16,440,(suelo.w*4),(suelo.h*4));
-  stretch_blit(suelo,canvas,0,0,suelo.w,suelo.h,i*16,460,(suelo.w*4),(suelo.h*4));
+  stretch_blit(suelo,bitmap,0,0,suelo.w,suelo.h,i*16,440,(suelo.w*4),(suelo.h*4));
+  stretch_blit(suelo,bitmap,0,0,suelo.w,suelo.h,i*16,460,(suelo.w*4),(suelo.h*4));
  }
 }
 
-function DibujaColumnas(){
+function DibujaColumnas(bitmap){
  for(i=0;i<40;i++){
-  stretch_blit(columna[0],canvas,0,0,columna[0].w,columna[0].h,16,432-(i*8),(columna[0].w*4),(columna[0].h*4));
+  stretch_blit(columna[0],bitmap,0,0,columna[0].w,columna[0].h,16,432-(i*8),(columna[0].w*4),(columna[0].h*4));
  } 
- stretch_blit(columna[1],canvas,0,0,columna[1].w,columna[1].h,16,92,(columna[1].w*4),(columna[1].h*4)); 
+ stretch_blit(columna[1],bitmap,0,0,columna[1].w,columna[1].h,16,92,(columna[1].w*4),(columna[1].h*4)); 
  for(i=0;i<20;i++){
-  stretch_blit(columna[0],canvas,0,0,columna[0].w,columna[0].h,370,432-(i*8),(columna[0].w*4),(columna[0].h*4));
+  stretch_blit(columna[0],bitmap,0,0,columna[0].w,columna[0].h,370,432-(i*8),(columna[0].w*4),(columna[0].h*4));
  } 
- stretch_blit(columna[1],canvas,0,0,columna[1].w,columna[1].h,370,252,(columna[1].w*4),(columna[1].h*4));  
+ stretch_blit(columna[1],bitmap,0,0,columna[1].w,columna[1].h,370,252,(columna[1].w*4),(columna[1].h*4));  
 }
 
-function overscan(){
- for(i=0;i<canvas.h;i+=4){
-  hline(canvas,0,i,canvas.w,makecol(0,0,0));
+function overscan(bitmap){
+ for(i=0;i<bitmap.h;i+=4){
+  hline(bitmap,0,i,bitmap.w,makecol(0,0,0));
  }
 }
 
 
 
 
-function lissajous(){
- scalc += 0.01;
- ccalc += 0.02;
- var carneY = 100 + (Math.sin(scalc) * 100);
- var carneX = 200 + (Math.sin(ccalc) * 50);
- stretch_blit(carne,canvas,0,0,carne.w,carne.h,carneX,carneY,(carne.w*4),(carne.h*4));
+function lissajous(bitmap){
+ scalc+=0.01;
+ ccalc+=0.02;
+ var carneY=100+(Math.sin(scalc)*100);
+ var carneX=200+(Math.sin(ccalc)*50);
+ stretch_blit(carne,bitmap,0,0,carne.w,carne.h,carneX,carneY,(carne.w*4),(carne.h*4));
 }
 
-function animacion(){  
- stretch_blit(kirby[contSprite],canvas,0,0,kirby[contSprite].w,kirby[contSprite].h,x,y,(kirby[contSprite].w*4),(kirby[contSprite].h*4));
+function animacion(bitmap){  
+ stretch_blit(kirby[contSprite],bitmap,0,0,kirby[contSprite].w,kirby[contSprite].h,x,y,(kirby[contSprite].w*4),(kirby[contSprite].h*4));
  contEspera--;
  if(contEspera<0){
   contSprite++;
@@ -67,20 +64,22 @@ function animacion(){
  if(key[KEY_DOWN]) y+=4; 
 }
 
-function main(){ 
- allegro_init_all("canvas_id",640,480);
+function main(){
+ allegro_init_all("canvas_id",window.innerWidth,window.innerHeight);
+ var auxcanvas=create_bitmap(640,480)
  LoadSprites();
  ready(function(){
   loop(function(){
-   clear_to_color(canvas,makecol(63,191,255));   
-   DibujaSuelo();
-   DibujaColumnas();
-   lissajous();
-   animacion();
-   overscan();
+   clear_to_color(auxcanvas,makecol(63,191,255));   
+   DibujaSuelo(auxcanvas);
+   DibujaColumnas(auxcanvas);
+   lissajous(auxcanvas);
+   animacion(auxcanvas);
+   overscan(auxcanvas);   
+   stretch_blit(auxcanvas,canvas,0,0,auxcanvas.w,auxcanvas.h,0,0,canvas.w,canvas.h);
   },BPS_TO_TIMER(60));
- });
+ }); 
  return 0;
- remove_keyboard();
+ //remove_keyboard();
 }
 END_OF_MAIN();
