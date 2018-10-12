@@ -2,8 +2,9 @@ var kirby=[];
 var columna=[];
 var x=100,y=366,contSprite=0;
 var suelo,carne;
-var contEspera=3;
+var contEspera=3,contUp=10,contDown=10;
 var scalc=0,ccalc=0;
+var doUp=false,doDown=false;
 
 function LoadSprites(){
  kirby[0]=load_bitmap("data:image/gif;base64,R0lGODlhFgATALMAAAAAADlC1mMIIbUAKdYAUt5Kc/dzpff39/8A//8YhP+l3v///////////////////yH5BAEAAAgALAAAAAAWABMAAAR/EMmJhL00Z6u6t9rmjV8oAWSqCCFgqB7KaiisGIc7Ty4s3ABZpudTFISU3iv1MwRWQ4O0sOwYBIlEZ3eSTqnS3/Ya5IG9lxGZQAAgAAPA2UufAhLsYN5Vpx/ZewRZCXJzBkcAgHEnWQqEQZBBA5OQPIOELWU0WW0mnm+anxQRAAA7");
@@ -53,15 +54,21 @@ function lissajous(bitmap){
 function animacion(bitmap){  
  stretch_blit(kirby[contSprite],bitmap,0,0,kirby[contSprite].w,kirby[contSprite].h,x,y,(kirby[contSprite].w*4),(kirby[contSprite].h*4));
  contEspera--;
- if(contEspera<0){
-  contSprite++;
-  contEspera=3;
+ if (doUp==true){
+  contUp--;
+  y-=8;
+  if (contUp<0){doUp=false;doDown=true;contUp=10;}
  }
+ if (doDown==true){
+  contDown--;
+  y+=8;
+  if(contDown<0){doDown=false;contDown=10;}	 
+ } 
+ if(contEspera<0){contSprite++;contEspera=3;}
  if(contSprite>2) contSprite=0;
  if(key[KEY_LEFT]) x-=4;
  if(key[KEY_RIGHT]) x+=4;
- if(key[KEY_UP]) y-=4;
- if(key[KEY_DOWN]) y+=4; 
+ if(key[KEY_UP]) doUp=true 
 }
 
 function main(){
