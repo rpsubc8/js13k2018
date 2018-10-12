@@ -10,6 +10,5 @@ Prueba de juego HTML5 JS para el concurso <a href='https://js13kgames.com/'>js13
  </li>
  <li>Se permite mover a la derecha, izquierda y saltar.</li>
 </ul>
-<br>
 <img src='https://github.com/rpsubc8/js13k2018/blob/master/previewJuego.png'>
 <h2><a href='https://github.com/rpsubc8/js13k2018/blob/master/mini.zip'>Version minima comprimida 3,45 KB</a></h2>
